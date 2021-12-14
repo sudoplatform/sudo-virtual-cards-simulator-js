@@ -1,0 +1,33 @@
+input SimulateAuthorizationRequest {
+  pan: String!
+  amount: Int!
+  merchantId: ID!
+  expiry: ExpiryInput!
+  billingAddress: EnteredAddressInput
+  csc: String
+}
+
+input ExpiryInput {
+  mm: Int!
+  yyyy: Int!
+}
+
+input EnteredAddressInput {
+  addressLine1: String
+  addressLine2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+}
+
+type SimulateAuthorizationResponse {
+  id: ID!
+  approved: Boolean!
+  billedAmount: CurrencyAmount!
+  declineReason: String
+  createdAtEpochMs: Float!
+  updatedAtEpochMs: Float!
+  billed: CurrencyAmount!
+  authorizationCode: String
+}

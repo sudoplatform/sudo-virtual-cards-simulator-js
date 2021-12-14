@@ -1,0 +1,5 @@
+fragment SimulateAuthorizationExpiryResponse on SimulateAuthorizationExpiryResponse {
+  id
+  createdAtEpochMs
+  updatedAtEpochMs
+}

@@ -1,0 +1,39 @@
+mutation SimulateAuthorization($input: SimulateAuthorizationRequest!) {
+  simulateAuthorization(input: $input) {
+    ...SimulateAuthorizationResponse
+  }
+}
+
+mutation SimulateIncrementalAuthorization(
+  $input: SimulateIncrementalAuthorizationRequest!
+) {
+  simulateIncrementalAuthorization(input: $input) {
+    ...SimulateAuthorizationResponse
+  }
+}
+
+mutation SimulateReversal($input: SimulateReversalRequest!) {
+  simulateReversal(input: $input) {
+    ...SimulateReversalResponse
+  }
+}
+
+mutation SimulateAuthorizationExpiry(
+  $input: SimulateAuthorizationExpiryRequest!
+) {
+  simulateAuthorizationExpiry(input: $input) {
+    ...SimulateAuthorizationExpiryResponse
+  }
+}
+
+mutation SimulateRefund($input: SimulateRefundRequest!) {
+  simulateRefund(input: $input) {
+    ...SimulateRefundResponse
+  }
+}
+
+mutation SimulateDebit($input: SimulateDebitRequest!) {
+  simulateDebit(input: $input) {
+    ...SimulateDebitResponse
+  }
+}

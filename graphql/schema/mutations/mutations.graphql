@@ -1,0 +1,19 @@
+type Mutation {
+  simulateAuthorization(
+    input: SimulateAuthorizationRequest!
+  ): SimulateAuthorizationResponse!
+
+  simulateIncrementalAuthorization(
+    input: SimulateIncrementalAuthorizationRequest!
+  ): SimulateAuthorizationResponse!
+
+  simulateReversal(input: SimulateReversalRequest!): SimulateReversalResponse!
+
+  simulateAuthorizationExpiry(
+    input: SimulateAuthorizationExpiryRequest!
+  ): SimulateAuthorizationExpiryResponse!
+
+  simulateRefund(input: SimulateRefundRequest!): SimulateRefundResponse!
+
+  simulateDebit(input: SimulateDebitRequest!): SimulateDebitResponse!
+}

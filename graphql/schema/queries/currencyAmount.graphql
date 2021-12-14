@@ -1,0 +1,4 @@
+type CurrencyAmount {
+  currency: String!
+  amount: Int!
+}

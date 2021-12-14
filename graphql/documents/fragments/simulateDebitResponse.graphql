@@ -1,0 +1,9 @@
+fragment SimulateDebitResponse on SimulateDebitResponse {
+  id
+  billedAmount {
+    currency
+    amount
+  }
+  createdAtEpochMs
+  updatedAtEpochMs
+}

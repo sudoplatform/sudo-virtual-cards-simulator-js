@@ -1,0 +1,11 @@
+input SimulateRefundRequest {
+  amount: Int!
+  debitId: ID!
+}
+
+type SimulateRefundResponse {
+  id: ID!
+  billedAmount: CurrencyAmount!
+  createdAtEpochMs: Float!
+  updatedAtEpochMs: Float!
+}

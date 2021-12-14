@@ -1,0 +1,15 @@
+type SimulatorMerchant {
+  id: ID!
+  description: String!
+  name: String!
+  mcc: String!
+  city: String!
+  state: String
+  postalCode: String!
+  country: String!
+  currency: String!
+  declineAfterAuthorization: Boolean!
+  declineBeforeAuthorization: Boolean!
+  createdAtEpochMs: Float!
+  updatedAtEpochMs: Float!
+}

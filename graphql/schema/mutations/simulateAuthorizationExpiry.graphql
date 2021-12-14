@@ -1,0 +1,9 @@
+input SimulateAuthorizationExpiryRequest {
+  authorizationId: ID!
+}
+
+type SimulateAuthorizationExpiryResponse {
+  id: ID!
+  createdAtEpochMs: Float!
+  updatedAtEpochMs: Float!
+}

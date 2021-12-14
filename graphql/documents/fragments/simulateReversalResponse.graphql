@@ -1,0 +1,9 @@
+fragment SimulateReversalResponse on SimulateReversalResponse {
+  id
+  billedAmount {
+    currency
+    amount
+  }
+  createdAtEpochMs
+  updatedAtEpochMs
+}

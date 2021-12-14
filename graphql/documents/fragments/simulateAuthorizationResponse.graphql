@@ -1,0 +1,16 @@
+fragment SimulateAuthorizationResponse on SimulateAuthorizationResponse {
+  id
+  approved
+  billedAmount {
+    currency
+    amount
+  }
+  declineReason
+  createdAtEpochMs
+  updatedAtEpochMs
+  billed {
+    currency
+    amount
+  }
+  authorizationCode
+}

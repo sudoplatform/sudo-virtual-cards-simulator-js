@@ -1,0 +1,11 @@
+input SimulateReversalRequest {
+  amount: Int!
+  authorizationId: ID!
+}
+
+type SimulateReversalResponse {
+  id: ID!
+  billedAmount: CurrencyAmount!
+  createdAtEpochMs: Float!
+  updatedAtEpochMs: Float!
+}

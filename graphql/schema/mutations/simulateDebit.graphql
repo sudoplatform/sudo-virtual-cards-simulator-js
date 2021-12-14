@@ -1,0 +1,11 @@
+input SimulateDebitRequest {
+  amount: Int!
+  authorizationId: ID!
+}
+
+type SimulateDebitResponse {
+  id: ID!
+  billedAmount: CurrencyAmount!
+  createdAtEpochMs: Float!
+  updatedAtEpochMs: Float!
+}

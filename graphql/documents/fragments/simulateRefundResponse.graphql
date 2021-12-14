@@ -1,0 +1,9 @@
+fragment SimulateRefundResponse on SimulateRefundResponse {
+  id
+  billedAmount {
+    currency
+    amount
+  }
+  createdAtEpochMs
+  updatedAtEpochMs
+}

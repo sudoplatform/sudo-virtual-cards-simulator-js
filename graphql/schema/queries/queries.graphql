@@ -1,0 +1,4 @@
+type Query {
+  listSimulatorMerchants: [SimulatorMerchant!]!
+  listSimulatorConversionRates: [CurrencyAmount!]!
+}

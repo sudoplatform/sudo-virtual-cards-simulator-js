@@ -1,0 +1,15 @@
+fragment SimulatorMerchant on SimulatorMerchant {
+  id
+  description
+  name
+  mcc
+  city
+  state
+  postalCode
+  country
+  currency
+  declineAfterAuthorization
+  declineBeforeAuthorization
+  createdAtEpochMs
+  updatedAtEpochMs
+}
