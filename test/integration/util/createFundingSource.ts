@@ -2,7 +2,7 @@ import {
   FundingSource,
   FundingSourceType,
   SudoVirtualCardsClient,
-} from '@sudoplatform-private/sudo-virtual-cards'
+} from '@sudoplatform/sudo-virtual-cards'
 import Stripe from 'stripe'
 
 /**

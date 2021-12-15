@@ -1,4 +1,4 @@
-import { SudoVirtualCardsClient } from '@sudoplatform-private/sudo-virtual-cards'
+import { SudoVirtualCardsClient } from '@sudoplatform/sudo-virtual-cards'
 import Stripe from 'stripe'
 
 export const getStripe = async (

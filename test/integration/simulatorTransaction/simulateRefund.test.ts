@@ -1,5 +1,5 @@
-import { VirtualCard } from '@sudoplatform-private/sudo-virtual-cards'
 import { DefaultLogger } from '@sudoplatform/sudo-common'
+import { VirtualCard } from '@sudoplatform/sudo-virtual-cards'
 import { v4 } from 'uuid'
 import {
   SimulateAuthorizationOutput,

@@ -1,11 +1,11 @@
+import { CachePolicy } from '@sudoplatform/sudo-common'
+import { Sudo, SudoProfilesClient } from '@sudoplatform/sudo-profiles'
 import {
   BillingAddress,
   ProvisioningState,
   SudoVirtualCardsClient,
   VirtualCard,
-} from '@sudoplatform-private/sudo-virtual-cards'
-import { CachePolicy } from '@sudoplatform/sudo-common'
-import { Sudo, SudoProfilesClient } from '@sudoplatform/sudo-profiles'
+} from '@sudoplatform/sudo-virtual-cards'
 import Stripe from 'stripe'
 import { v4 } from 'uuid'
 import { delay } from '../../utility/delay'

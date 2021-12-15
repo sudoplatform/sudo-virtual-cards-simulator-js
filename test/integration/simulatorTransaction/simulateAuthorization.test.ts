@@ -1,5 +1,5 @@
-import { VirtualCard } from '@sudoplatform-private/sudo-virtual-cards'
 import { DefaultLogger } from '@sudoplatform/sudo-common'
+import { VirtualCard } from '@sudoplatform/sudo-virtual-cards'
 import { SudoVirtualCardsSimulatorClient } from '../../../src'
 import { provisionVirtualCard } from '../util/provisionVirtualCard'
 import { setupVirtualCardsSimulatorClient } from '../util/virtualCardsSimulatorClientLifecycle'

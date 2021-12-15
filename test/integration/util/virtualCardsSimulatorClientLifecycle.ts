@@ -1,9 +1,3 @@
-import {
-  DefaultSudoVirtualCardsClient,
-  SudoVirtualCardsClient,
-} from '@sudoplatform-private/sudo-virtual-cards'
-import { ApiClient as SudoVirtualCardsApiClient } from '@sudoplatform-private/sudo-virtual-cards/lib/private/data/common/apiClient'
-import { SudoVirtualCardsClientPrivateOptions } from '@sudoplatform-private/sudo-virtual-cards/lib/private/data/common/privateSudoVirtualCardsClientOptions'
 import { DefaultApiClientManager } from '@sudoplatform/sudo-api-client'
 import {
   DefaultConfigurationManager,
@@ -20,6 +14,12 @@ import {
   DefaultSudoUserClient,
   TESTAuthenticationProvider,
 } from '@sudoplatform/sudo-user'
+import {
+  DefaultSudoVirtualCardsClient,
+  SudoVirtualCardsClient,
+} from '@sudoplatform/sudo-virtual-cards'
+import { ApiClient as SudoVirtualCardsApiClient } from '@sudoplatform/sudo-virtual-cards/lib/private/data/common/apiClient'
+import { SudoVirtualCardsClientPrivateOptions } from '@sudoplatform/sudo-virtual-cards/lib/private/data/common/privateSudoVirtualCardsClientOptions'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 import AWSAppSyncClient, { AUTH_TYPE } from 'aws-appsync'
 import fs from 'fs'

@@ -81,6 +81,7 @@
     "@sudoplatform/sudo-profiles": "^11.0.0",
     "@sudoplatform/sudo-secure-id-verification": "^2.0.1",
     "@sudoplatform/sudo-user": "^9.1.0",
+    "@sudoplatform/sudo-virtual-cards": "^1.0.2",
     "@sudoplatform/sudo-web-crypto-provider": "^2.1.0",
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.171",

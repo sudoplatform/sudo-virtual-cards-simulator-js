@@ -2656,6 +2656,23 @@
     tslib "^2.3.0"
     uuid "^8.3.1"
 
+"@sudoplatform/sudo-virtual-cards@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@sudoplatform/sudo-virtual-cards/-/sudo-virtual-cards-1.0.2.tgz#8fce13a144cf32f3e67cfe8bad2faf62b86a16c4"
+  integrity sha512-O2247C261xg4W/lGReEoVRLgLuEikh3DaaFhpWC26cyq8KHpIwjFVOQQMrgxZreeu3rKBUeGeYQaaIZRw6YZrQ==
+  dependencies:
+    "@stripe/stripe-js" "^1.20.3"
+    apollo-cache-inmemory "^1.6.6"
+    aws-appsync "4.0.3"
+    fp-ts "^2.11.2"
+    graphql "^15.5.3"
+    io-ts "^2.2.16"
+    lodash "^4.17.21"
+    monocle-ts "^2.3.10"
+    newtype-ts "^0.3.4"
+    redux "^4.1.1"
+    stripe "^8.176.0"
+
 "@sudoplatform/sudo-web-crypto-provider@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@sudoplatform/sudo-web-crypto-provider/-/sudo-web-crypto-provider-2.1.0.tgz#d8e095835319c61a902a3b762e97ef4eaf88d761"
