@@ -15,6 +15,7 @@ import {
 } from 'ts-mockito'
 import { v4 } from 'uuid'
 import {
+  ListSimulatorConversionRatesDocument,
   ListSimulatorMerchantsDocument,
   SimulateAuthorizationDocument,
   SimulateAuthorizationExpiryDocument,
@@ -479,6 +480,48 @@ describe('ApiClient Test Suite', () => {
       })
       await expect(
         instanceUnderTest.listSimulatorMerchants(CachePolicy.CacheOnly),
+      ).rejects.toThrow(UnknownGraphQLError)
+    })
+  })
+  describe('listSimulatorConversionRates', () => {
+    it('performs successfully', async () => {
+      when(mockClient.query(anything())).thenResolve({
+        data: {
+          listSimulatorConversionRates: [GraphQLDataFactory.currencyAmount],
+        },
+      } as any)
+      const fetchPolicy = 'cache-only'
+      await expect(
+        instanceUnderTest.listSimulatorConversionRates(fetchPolicy),
+      ).resolves.toStrictEqual([GraphQLDataFactory.currencyAmount])
+      verify(mockClient.query(anything())).once()
+      const [args] = capture(mockClient.query as any).first()
+      expect(args).toStrictEqual({
+        fetchPolicy: 'cache-only',
+        variables: undefined,
+        query: ListSimulatorConversionRatesDocument,
+      })
+    })
+    it('handles thrown error from app sync call', async () => {
+      when(mockClient.query(anything())).thenReject(
+        new ApolloError({
+          graphQLErrors: [new GraphQLError('appsync failure')],
+        }),
+      )
+      await expect(
+        instanceUnderTest.listSimulatorConversionRates(CachePolicy.CacheOnly),
+      ).rejects.toThrow(UnknownGraphQLError)
+    })
+    it('handles error from graphQl', async () => {
+      when(mockClient.query(anything())).thenResolve({
+        data: null,
+        errors: [new GraphQLError('failed')],
+        loading: false,
+        networkStatus: NetworkStatus.error,
+        stale: false,
+      })
+      await expect(
+        instanceUnderTest.listSimulatorConversionRates(CachePolicy.CacheOnly),
       ).rejects.toThrow(UnknownGraphQLError)
     })
   })

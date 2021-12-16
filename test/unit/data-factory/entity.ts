@@ -27,7 +27,7 @@ export class EntityDataFactory {
     state: 'dummyState',
   }
 
-  private static readonly currencyAmount: CurrencyAmountEntity = {
+  static readonly currencyAmount: CurrencyAmountEntity = {
     currency: 'dummyCurrency',
     amount: 100,
   }

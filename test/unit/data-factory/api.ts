@@ -29,7 +29,7 @@ export class ApiDataFactory {
     state: 'dummyState',
   }
 
-  private static readonly currencyAmount: CurrencyAmount = {
+  static readonly currencyAmount: CurrencyAmount = {
     currency: 'dummyCurrency',
     amount: 100,
   }

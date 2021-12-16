@@ -6,6 +6,7 @@ import { DefaultSimulatorMerchantService } from '../private/data/simulatorMercha
 import { DefaultSimulatorTransactionService } from '../private/data/simulatorTransaction/defaultSimulatorTransactionService'
 import { SimulatorMerchantService } from '../private/domain/entities/simulatorMerchant/simulatorMerchantService'
 import { SimulatorTransactionService } from '../private/domain/entities/simulatorTransaction/simulatorTransactionService'
+import { ListSimulatorConversionRatesUseCase } from '../private/domain/use-cases/simulatorMerchant/listSimulatorConversionRatesUseCase'
 import { ListSimulatorMerchantsUseCase } from '../private/domain/use-cases/simulatorMerchant/listSimulatorMerchantsUseCase'
 import { SimulateAuthorizationExpiryTransactionUseCase } from '../private/domain/use-cases/simulatorTransaction/simulateAuthorizationExpiryTransactionUseCase'
 import { SimulateAuthorizationTransactionUseCase } from '../private/domain/use-cases/simulatorTransaction/simulateAuthorizationTransactionUseCase'
@@ -21,6 +22,14 @@ import { CurrencyAmount } from './typings/currencyAmount'
  * @property {CachePolicy | undefined} cachePolicy Optional - cache policy for listing merchants. If not supplied, remote will be used.
  */
 export interface ListSimulatorMerchantsInput {
+  cachePolicy?: CachePolicy
+}
+
+/**
+ * Input for {@link SudoVirtualCardsSimulatorClient.listSimulatorConversionRates}.
+ * @property {CachePolicy | undefined} cachePolicy Optional - cache policy for listing merchants. If not supplied, remote will be used.
+ */
+export interface ListSimulatorConversionAmountsInput {
   cachePolicy?: CachePolicy
 }
 
@@ -231,6 +240,16 @@ export interface SudoVirtualCardsSimulatorClient {
   ): Promise<SimulatorMerchant[]>
 
   /**
+   * Retrieve a list of conversion rates of supported currencies.
+   *  This method returns all the supported currency conversion rates used by the simulator.
+   *
+   * @param input Input Parameters.
+   */
+  listSimulatorConversionRates(
+    input?: ListSimulatorConversionAmountsInput,
+  ): Promise<CurrencyAmount[]>
+
+  /**
    * Simulate an authorization transaction (`pending`).
    *
    * This causes a pending transaction to appear on the card with the passed in `id`.
@@ -337,6 +356,15 @@ export class DefaultSudoVirtualCardsSimulatorClient
     input?: ListSimulatorMerchantsInput,
   ): Promise<SimulatorMerchant[]> {
     const useCase = new ListSimulatorMerchantsUseCase(
+      this.simulatorMerchantService,
+    )
+    return await useCase.execute(input)
+  }
+
+  async listSimulatorConversionRates(
+    input?: ListSimulatorConversionAmountsInput,
+  ): Promise<CurrencyAmount[]> {
+    const useCase = new ListSimulatorConversionRatesUseCase(
       this.simulatorMerchantService,
     )
     return await useCase.execute(input)

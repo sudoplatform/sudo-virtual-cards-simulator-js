@@ -3,3 +3,10 @@ query listSimulatorMerchants {
     ...SimulatorMerchant
   }
 }
+
+query ListSimulatorConversionRates {
+  listSimulatorConversionRates {
+    currency
+    amount
+  }
+}

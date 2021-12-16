@@ -9,6 +9,7 @@ import {
 import { ApiClient } from '../../../src/private/data/common/apiClient'
 import { DefaultSimulatorMerchantService } from '../../../src/private/data/simulatorMerchant/defaultSimulatorMerchantService'
 import { DefaultSimulatorTransactionService } from '../../../src/private/data/simulatorTransaction/defaultSimulatorTransactionService'
+import { ListSimulatorConversionRatesUseCase } from '../../../src/private/domain/use-cases/simulatorMerchant/listSimulatorConversionRatesUseCase'
 import { ListSimulatorMerchantsUseCase } from '../../../src/private/domain/use-cases/simulatorMerchant/listSimulatorMerchantsUseCase'
 import { SimulateAuthorizationExpiryTransactionUseCase } from '../../../src/private/domain/use-cases/simulatorTransaction/simulateAuthorizationExpiryTransactionUseCase'
 import { SimulateAuthorizationTransactionUseCase } from '../../../src/private/domain/use-cases/simulatorTransaction/simulateAuthorizationTransactionUseCase'
@@ -44,6 +45,13 @@ jest.mock(
 const JestMockListSimulatorMerchantsUseCase =
   ListSimulatorMerchantsUseCase as jest.MockedClass<
     typeof ListSimulatorMerchantsUseCase
+  >
+jest.mock(
+  '../../../src/private/domain/use-cases/simulatorMerchant/listSimulatorConversionRatesUseCase',
+)
+const JestMockListSimulatorConversionRatesUseCase =
+  ListSimulatorConversionRatesUseCase as jest.MockedClass<
+    typeof ListSimulatorConversionRatesUseCase
   >
 jest.mock(
   '../../../src/private/domain/use-cases/simulatorTransaction/simulateAuthorizationTransactionUseCase',
@@ -103,6 +111,8 @@ describe('SudoVirtualCardsSimulatorClient Test Suite', () => {
     mock<ListSimulatorMerchantsUseCase>()
   const mockSimulateAuthorizationUseCase =
     mock<SimulateAuthorizationTransactionUseCase>()
+  const mockListSimulatorConversionRatesUseCase =
+    mock<ListSimulatorConversionRatesUseCase>()
   const mockSimulateIncrementalAuthorizationUseCase =
     mock<SimulateIncrementalAuthorizationTransactionUseCase>()
   const mockSimulateReversalUseCase = mock<SimulateReversalTransactionUseCase>()
@@ -119,6 +129,7 @@ describe('SudoVirtualCardsSimulatorClient Test Suite', () => {
     reset(mockSimulatorTransactionService)
 
     reset(mockListSimulatorMerchantsUseCase)
+    reset(mockListSimulatorConversionRatesUseCase)
     reset(mockSimulateAuthorizationUseCase)
     reset(mockSimulateIncrementalAuthorizationUseCase)
     reset(mockSimulateReversalUseCase)
@@ -130,6 +141,7 @@ describe('SudoVirtualCardsSimulatorClient Test Suite', () => {
     JestMockDefaultSimulatorTransactionService.mockClear()
     JestMockApiClient.mockClear()
     JestMockListSimulatorMerchantsUseCase.mockClear()
+    JestMockListSimulatorConversionRatesUseCase.mockClear()
     JestMockSimulateAuthorizationTransactionUseCase.mockClear()
     JestMockSimulateIncrementalAuthorizationTransactionUseCase.mockClear()
     JestMockSimulateReversalTransactionUseCase.mockClear()
@@ -146,6 +158,9 @@ describe('SudoVirtualCardsSimulatorClient Test Suite', () => {
 
     JestMockListSimulatorMerchantsUseCase.mockImplementation(() =>
       instance(mockListSimulatorMerchantsUseCase),
+    )
+    JestMockListSimulatorConversionRatesUseCase.mockImplementation(() =>
+      instance(mockListSimulatorConversionRatesUseCase),
     )
     JestMockSimulateAuthorizationTransactionUseCase.mockImplementation(() =>
       instance(mockSimulateAuthorizationUseCase),
@@ -206,6 +221,28 @@ describe('SudoVirtualCardsSimulatorClient Test Suite', () => {
       await expect(
         instanceUnderTest.listSimulatorMerchants(),
       ).resolves.toStrictEqual([ApiDataFactory.simulatorMerchant])
+    })
+  })
+  describe('listSimulatorConversionRates', () => {
+    beforeEach(() => {
+      when(
+        mockListSimulatorConversionRatesUseCase.execute(anything()),
+      ).thenResolve([EntityDataFactory.currencyAmount])
+    })
+    it('generates use case', async () => {
+      await instanceUnderTest.listSimulatorConversionRates()
+      expect(JestMockListSimulatorConversionRatesUseCase).toHaveBeenCalledTimes(
+        1,
+      )
+    })
+    it('calls use case as expected', async () => {
+      await instanceUnderTest.listSimulatorConversionRates()
+      verify(mockListSimulatorConversionRatesUseCase.execute(anything())).once()
+    })
+    it('returns expected result', async () => {
+      await expect(
+        instanceUnderTest.listSimulatorConversionRates(),
+      ).resolves.toStrictEqual([ApiDataFactory.currencyAmount])
     })
   })
   describe('simulateAuthorization', () => {

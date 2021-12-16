@@ -16,6 +16,9 @@ import {
 import { ApolloError } from 'apollo-client/errors/ApolloError'
 import AWSAppSyncClient from 'aws-appsync'
 import {
+  CurrencyAmount,
+  ListSimulatorConversionRatesDocument,
+  ListSimulatorConversionRatesQuery,
   ListSimulatorMerchantsDocument,
   ListSimulatorMerchantsQuery,
   SimulateAuthorizationDocument,
@@ -118,6 +121,17 @@ export class ApiClient {
       calleeName: this.listSimulatorMerchants.name,
     })
     return data.listSimulatorMerchants
+  }
+
+  async listSimulatorConversionRates(
+    fetchPolicy: FetchPolicy,
+  ): Promise<CurrencyAmount[]> {
+    const data = await this.performQuery<ListSimulatorConversionRatesQuery>({
+      query: ListSimulatorConversionRatesDocument,
+      fetchPolicy,
+      calleeName: this.listSimulatorConversionRates.name,
+    })
+    return data.listSimulatorConversionRates
   }
 
   async simulateReversal(

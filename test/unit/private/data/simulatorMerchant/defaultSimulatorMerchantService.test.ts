@@ -39,4 +39,20 @@ describe('DefaultSimulatorMerchantService Test Suite', () => {
       expect(args).toStrictEqual<typeof args>('cache-only')
     })
   })
+  describe('listConversionRates', () => {
+    beforeEach(() => {
+      when(mockAppSync.listSimulatorConversionRates(anything())).thenResolve([
+        GraphQLDataFactory.currencyAmount,
+      ])
+    })
+    it('calls app sync list', async () => {
+      const cachePolicy = CachePolicy.CacheOnly
+      await instanceUnderTest.listConversionRates({
+        cachePolicy,
+      })
+      verify(mockAppSync.listSimulatorConversionRates(anything())).once()
+      const [args] = capture(mockAppSync.listSimulatorConversionRates).first()
+      expect(args).toStrictEqual<typeof args>('cache-only')
+    })
+  })
 })
