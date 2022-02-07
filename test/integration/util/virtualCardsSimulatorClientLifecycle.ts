@@ -4,6 +4,7 @@ import {
   DefaultLogger,
 } from '@sudoplatform/sudo-common'
 import { DefaultSudoEntitlementsClient } from '@sudoplatform/sudo-entitlements'
+import { DefaultSudoEntitlementsAdminClient } from '@sudoplatform/sudo-entitlements-admin'
 import {
   DefaultSudoProfilesClient,
   Sudo,
@@ -40,8 +41,13 @@ const configFile = 'config/sudoplatformconfig.json'
 const registerKeyFile = 'config/register_key.private'
 const registerKeyIdFile = 'config/register_key.id'
 
-const registerKey = fs.readFileSync(registerKeyFile).toString()
-const registerKeyId = fs.readFileSync(registerKeyIdFile).toString().trim()
+const registerKey =
+  process.env.REGISTER_KEY?.trim() ||
+  fs.readFileSync(registerKeyFile).toString()
+const registerKeyId =
+  process.env.REGISTER_KEY_ID?.trim() ||
+  fs.readFileSync(registerKeyIdFile).toString().trim()
+const adminApiKey = process.env.ADMIN_API_KEY?.trim() || 'IAM'
 
 const testAuthenticationProvider = new TESTAuthenticationProvider(
   'vc-js-test',
@@ -105,8 +111,12 @@ export const setupVirtualCardsSimulatorClient = async (
       DefaultApiClientManager.getInstance().setAuthClient(userClient)
     const apiClient = new SudoVirtualCardsApiClient(apiClientManager)
     const entitlementsClient = new DefaultSudoEntitlementsClient(userClient)
+    const entitlementsAdminClient = new DefaultSudoEntitlementsAdminClient(
+      adminApiKey ?? 'IAM',
+    )
     await new EntitlementsBuilder()
       .setEntitlementsClient(entitlementsClient)
+      .setEntitlementsAdminClient(entitlementsAdminClient)
       .setLogger(log)
       .apply()
     const profilesClient = new DefaultSudoProfilesClient({
