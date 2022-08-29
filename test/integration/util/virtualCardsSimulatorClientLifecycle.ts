@@ -18,9 +18,8 @@ import {
 import {
   DefaultSudoVirtualCardsClient,
   SudoVirtualCardsClient,
+  SudoVirtualCardsClientOptions,
 } from '@sudoplatform/sudo-virtual-cards'
-import { ApiClient as SudoVirtualCardsApiClient } from '@sudoplatform/sudo-virtual-cards/lib/private/data/common/apiClient'
-import { SudoVirtualCardsClientPrivateOptions } from '@sudoplatform/sudo-virtual-cards/lib/private/data/common/privateSudoVirtualCardsClientOptions'
 import { NormalizedCacheObject } from 'apollo-cache-inmemory'
 import AWSAppSyncClient, { AUTH_TYPE } from 'aws-appsync'
 import fs from 'fs'
@@ -107,9 +106,8 @@ export const setupVirtualCardsSimulatorClient = async (
     DefaultConfigurationManager.getInstance().setConfig(
       fs.readFileSync(configFile).toString(),
     )
-    const apiClientManager =
-      DefaultApiClientManager.getInstance().setAuthClient(userClient)
-    const apiClient = new SudoVirtualCardsApiClient(apiClientManager)
+
+    DefaultApiClientManager.getInstance().setAuthClient(userClient)
     const entitlementsClient = new DefaultSudoEntitlementsClient(userClient)
     const entitlementsAdminClient = new DefaultSudoEntitlementsAdminClient(
       adminApiKey ?? 'IAM',
@@ -149,9 +147,8 @@ export const setupVirtualCardsSimulatorClient = async (
     const virtualCardsSimulatorClient =
       new DefaultSudoVirtualCardsSimulatorClient({ appSyncClient: client })
 
-    const options: SudoVirtualCardsClientPrivateOptions = {
+    const options: SudoVirtualCardsClientOptions = {
       sudoUserClient: userClient,
-      apiClient,
     }
 
     const virtualCardsClient = new DefaultSudoVirtualCardsClient(options)

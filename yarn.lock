@@ -2310,10 +2310,10 @@
     apollo-cache-inmemory "^1.6.6"
     apollo-link "^1.2.14"
 
-"@sudoplatform/sudo-common@^8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@sudoplatform/sudo-common/-/sudo-common-8.0.1.tgz#0fb9ece3881d7e6eec16acee9dd0a087d767d1c6"
-  integrity sha512-CrwqeFq9K4iJqwqk2Rw/msmCO+KNmnpljtLcMVq85EZxdECiqwweD9ok1zy+HNHDepaRVfE6aYwlJSo7RE4eIA==
+"@sudoplatform/sudo-common@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@sudoplatform/sudo-common/-/sudo-common-8.0.2.tgz#aad2328b1ba3d514a655d0aab7cdb62bb0cd2929"
+  integrity sha512-kkrXIHEAvCa+f7BpDIS2E5H29PWc34NcoWFMKWKC4pvNhzvUKTx+xdQEIIPZznPDwt7vXlkYwrI0b8nNhGAybQ==
   dependencies:
     "@aws-sdk/client-s3" "^3.154.0"
     apollo-client "^2.6.10"
@@ -2415,10 +2415,10 @@
     tslib "^2.4.0"
     uuid "^8.3.2"
 
-"@sudoplatform/sudo-virtual-cards@^4.0.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@sudoplatform/sudo-virtual-cards/-/sudo-virtual-cards-4.1.0.tgz#7590844f98f7e37ce7c98edd2713c7d5c90268c0"
-  integrity sha512-D/HuMzJxxS2ZeEyjdJotNxK28UfviZ5yhGxWclc5ajpQ+yh5gWSd/XAFbU+NVff6PrfKyr2pRgz5jiE9ZhVTlw==
+"@sudoplatform/sudo-virtual-cards@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@sudoplatform/sudo-virtual-cards/-/sudo-virtual-cards-5.0.2.tgz#0d0e4eaeacbec42ccf3c2dd4d548dcfdfb191fe4"
+  integrity sha512-8fj0LsYzk7O4B9mZvk5cxpQS5KnOVfg9uy4y+1vOGlygPWhOjM/VHkPdm852NP9oe7HbWZBNBm8VtYyJNmRwqw==
   dependencies:
     apollo-cache-inmemory "^1.6.6"
     async-mutex "^0.3.2"
@@ -2430,6 +2430,7 @@
     monocle-ts "^2.3.13"
     newtype-ts "^0.3.5"
     redux "^4.2.0"
+    tslib "^2.4.0"
 
 "@sudoplatform/sudo-web-crypto-provider@^7.0.1":
   version "7.0.1"
@@ -7482,10 +7483,10 @@ typedoc@^0.23.11:
     minimatch "^5.1.0"
     shiki "^0.11.1"
 
-typescript@^4.8.2:
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.2.tgz#e3b33d5ccfb5914e4eeab6699cf208adee3fd790"
-  integrity sha512-C0I1UsrrDHo2fYI5oaCGbSejwX4ch+9Y5jTQELvovfmFkK3HHSZJB8MSJcWLmCUBzQBchCrZ9rMRV6GuNrvGtw==
+typescript@~4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 ua-parser-js@^0.7.30:
   version "0.7.31"

@@ -49,7 +49,7 @@ export const provisionVirtualCard = async (
   } else {
     fundingSourceId = options.fundingSourceId
   }
-  const ownershipProofs = []
+  const ownershipProofs: string[] = []
   if (!options?.ownershipProofs) {
     if (!sudo.id) {
       throw new Error('sudo with id required')
