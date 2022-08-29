@@ -1,3 +1,6 @@
 build/
 docs/
 lib/
+cjs/
+types/
+src/gen/

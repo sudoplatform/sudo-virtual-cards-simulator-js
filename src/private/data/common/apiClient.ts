@@ -49,11 +49,12 @@ import {
 import { ErrorTransformer } from './transformer/errorTransformer'
 
 export class ApiClient {
-  private readonly log = new DefaultLogger(this.constructor.name)
+  private readonly log: DefaultLogger
   private readonly client: AWSAppSyncClient<NormalizedCacheObject>
 
   public constructor(apiClient: AWSAppSyncClient<NormalizedCacheObject>) {
     this.client = apiClient
+    this.log = new DefaultLogger(this.constructor.name)
   }
 
   async simulateAuthorization(
@@ -145,18 +146,18 @@ export class ApiClient {
     return data.simulateReversal
   }
 
-  async performQuery<Q, QVariables = OperationVariables>({
+  async performQuery<Q>({
     variables,
     fetchPolicy,
     query,
     calleeName,
-  }: QueryOptions<QVariables> & { calleeName?: string }): Promise<Q> {
+  }: QueryOptions<OperationVariables> & { calleeName?: string }): Promise<Q> {
     let result
     try {
       result = await this.client.query<Q>({
-        variables: variables,
-        fetchPolicy: fetchPolicy,
-        query: query,
+        variables,
+        fetchPolicy,
+        query,
       })
     } catch (err: any) {
       const clientError = err as ApolloError
@@ -183,18 +184,18 @@ export class ApiClient {
     }
   }
 
-  async performMutation<M, MVariables = OperationVariables>({
+  async performMutation<M>({
     mutation,
     variables,
     calleeName,
-  }: Omit<MutationOptions<M, MVariables>, 'fetchPolicy'> & {
+  }: Omit<MutationOptions<M>, 'fetchPolicy'> & {
     calleeName?: string
   }): Promise<M> {
     let result
     try {
       result = await this.client.mutate<M>({
-        mutation: mutation,
-        variables: variables,
+        mutation,
+        variables,
       })
     } catch (err) {
       const clientError = err as ApolloError

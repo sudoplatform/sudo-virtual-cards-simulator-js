@@ -1,7 +1,9 @@
 .cache
 .DS_Store
 docs
+cjs
 lib
+types
 node_modules
 src/gen
 yarn-error.log
