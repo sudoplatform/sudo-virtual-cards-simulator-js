@@ -1,25 +1,22 @@
-import { SudoVirtualCardsClient } from '@sudoplatform/sudo-virtual-cards'
+import {
+  isStripeCardFundingSourceClientConfiguration,
+  SudoVirtualCardsClient,
+} from '@sudoplatform/sudo-virtual-cards'
 import Stripe from 'stripe'
 
 export const getStripe = async (
   vcClient: SudoVirtualCardsClient,
 ): Promise<Stripe> => {
   const config = await vcClient.getFundingSourceClientConfiguration()
-  const fsConfig = config[0]
-  if (!fsConfig) {
-    throw 'Invalid config'
+
+  for (const fsConfig of config) {
+    if (isStripeCardFundingSourceClientConfiguration(fsConfig)) {
+      return new Stripe(fsConfig.apiKey, {
+        apiVersion: '2022-08-01',
+        typescript: true,
+      })
+    }
   }
-  if (fsConfig.type !== 'stripe') {
-    throw 'Invalid Stripe config'
-  }
-  if (fsConfig.version !== 1) {
-    throw 'Invalid config version'
-  }
-  if (!fsConfig.apiKey) {
-    throw 'Missing api key'
-  }
-  return new Stripe(fsConfig.apiKey, {
-    apiVersion: '2022-08-01',
-    typescript: true,
-  })
+
+  throw 'Stripe config not found'
 }

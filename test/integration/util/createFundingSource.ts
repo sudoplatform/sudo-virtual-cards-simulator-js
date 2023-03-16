@@ -1,6 +1,7 @@
 import {
   FundingSource,
   FundingSourceType,
+  isStripeCardProvisionalFundingSourceProvisioningData,
   SudoVirtualCardsClient,
 } from '@sudoplatform/sudo-virtual-cards'
 import Stripe from 'stripe'
@@ -54,21 +55,29 @@ export const createFundingSource = async (
       },
     },
   })
-  const setupIntent = await stripe.setupIntents.confirm(
-    provisionalCard.provisioningData.intent,
-    {
-      payment_method: paymentMethod.id,
-      client_secret: provisionalCard.provisioningData.clientSecret,
-    } as Stripe.SetupIntentCreateParams,
-  )
-  if (!setupIntent.payment_method) {
-    throw 'Failed to get payment_method from setup intent'
+  if (
+    isStripeCardProvisionalFundingSourceProvisioningData(
+      provisionalCard.provisioningData,
+    )
+  ) {
+    const setupIntent = await stripe.setupIntents.confirm(
+      provisionalCard.provisioningData.intent,
+      {
+        payment_method: paymentMethod.id,
+        client_secret: provisionalCard.provisioningData.clientSecret,
+      } as Stripe.SetupIntentCreateParams,
+    )
+    if (!setupIntent.payment_method) {
+      throw 'Failed to get payment_method from setup intent'
+    }
+    return await virtualCardsClient.completeFundingSource({
+      id: provisionalCard.id,
+      completionData: {
+        provider: 'stripe',
+        paymentMethod: setupIntent.payment_method.toString(),
+      },
+    })
+  } else {
+    throw 'Unsupported funding source type'
   }
-  return await virtualCardsClient.completeFundingSource({
-    id: provisionalCard.id,
-    completionData: {
-      provider: 'stripe',
-      paymentMethod: setupIntent.payment_method.toString(),
-    },
-  })
 }
