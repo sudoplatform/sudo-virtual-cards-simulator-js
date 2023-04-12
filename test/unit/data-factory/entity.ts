@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2023 Anonyome Labs, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import { CurrencyAmountEntity } from '../../../src/private/domain/entities/common/currenyAmountEntity'
 import { SimulatorMerchantEntity } from '../../../src/private/domain/entities/simulatorMerchant/simulatorMerchantEntity'
 import { SimulatorReversalTransactionEntity } from '../../../src/private/domain/entities/simulatorTransaction/simulateReversalTransactionEntity'
