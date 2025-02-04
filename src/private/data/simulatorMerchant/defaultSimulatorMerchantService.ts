@@ -37,9 +37,8 @@ export class DefaultSimulatorMerchantService
     const fetchPolicy = input?.cachePolicy
       ? FetchPolicyTransformer.transformCachePolicy(input.cachePolicy)
       : 'network-only'
-    const result = await this.apiClient.listSimulatorConversionRates(
-      fetchPolicy,
-    )
+    const result =
+      await this.apiClient.listSimulatorConversionRates(fetchPolicy)
     return result.map(CurrencyAmountEntityTransformer.transform)
   }
 }
